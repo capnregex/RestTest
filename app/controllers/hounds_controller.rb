@@ -1,56 +1,64 @@
 class HoundsController < ApplicationController
+
+  respond_to :html, :xml, :json, :yaml
+
   # GET /hounds
   # GET /hounds.xml
   def index
     @hounds = Hound.all
+    respond_with @hounds
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @hounds }
-    end
+#    respond_to do |format|
+#      format.html # index.html.erb
+#      format.xml  { render :xml => @hounds }
+#    end
   end
 
   # GET /hounds/1
   # GET /hounds/1.xml
   def show
     @hound = Hound.find(params[:id])
+    respond_with @hound
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @hound }
-    end
+#    respond_to do |format|
+#      format.html # show.html.erb
+#      format.xml  { render :xml => @hound }
+#    end
   end
 
   # GET /hounds/new
   # GET /hounds/new.xml
   def new
     @hound = Hound.new
+    respond_with @hound
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @hound }
-    end
+#    respond_to do |format|
+#      format.html # new.html.erb
+#      format.xml  { render :xml => @hound }
+#    end
   end
 
   # GET /hounds/1/edit
   def edit
     @hound = Hound.find(params[:id])
+    respond_with @hound
   end
 
   # POST /hounds
   # POST /hounds.xml
   def create
     @hound = Hound.new(params[:hound])
-
-    respond_to do |format|
-      if @hound.save
-        format.html { redirect_to(@hound, :notice => 'Hound was successfully created.') }
-        format.xml  { render :xml => @hound, :status => :created, :location => @hound }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @hound.errors, :status => :unprocessable_entity }
-      end
-    end
+    @hound.save
+    respond_with @hound
+#    respond_to do |format|
+#      if @hound.save
+#        format.html { redirect_to(@hound, :notice => 'Hound was successfully created.') }
+#        format.xml  { render :xml => @hound, :status => :created, :location => @hound }
+#      else
+#        format.html { render :action => "new" }
+#        format.xml  { render :xml => @hound.errors, :status => :unprocessable_entity }
+#      end
+#    end
   end
 
   # PUT /hounds/1
